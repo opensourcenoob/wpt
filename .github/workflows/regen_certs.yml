@@ -14,6 +14,7 @@ jobs:
       # Use a conditional step instead of a conditional job to work around #20700.
       if: github.repository == 'web-platform-tests/wpt'
       run: |
+        python wpt make-hosts-file | sudo tee -a /etc/hosts
         python wpt regen-certs --force
     - name: Commit and create pull request
       # Use a conditional step instead of a conditional job to work around #20700.
