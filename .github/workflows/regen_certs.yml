@@ -1,16 +1,16 @@
 name: Regenerate WPT certificates
 on:
   schedule:
-    # Our certificates are good for a few years, but we regenerate them every 6
-    # months to be sure.
-    - cron: '0 0 1 */6 *'
+    # Our certificates are good for ~2 years, but we regenerate them every
+    # month to be sure.
+    - cron: '0 0 1 * *'
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Run cert_regen.sh
+    - name: Regenerate certs
       # Use a conditional step instead of a conditional job to work around #20700.
       if: github.repository == 'web-platform-tests/wpt'
       run: |
