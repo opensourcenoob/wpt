@@ -42,7 +42,11 @@ function convertToMojoMap(record, keyFn) {
   let map = new Map();
   for (const [key, value] of Object.entries(record)) {
     let buffer = ArrayBuffer.isView(value) ? value.buffer : value;
-    map.set(keyFn(key), Array.from(new Uint8Array(buffer)));
+    let numberKey = parseInt(key);
+    if (!Number.isNaN(numberKey))
+      map.set(keyFn(numberKey), Array.from(new Uint8Array(buffer)));
+    else
+      map.set(keyFn(key), Array.from(new Uint8Array(buffer)));
   }
   return map;
 }

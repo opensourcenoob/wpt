@@ -113,7 +113,6 @@ const health_thermometer_ad_packet = {
     uuids: [health_thermometer.uuid],
   },
 };
-
 /**
  * An advertisement packet object that simulates a Heart Rate device.
  * @type {ScanResult}
@@ -125,6 +124,31 @@ const heart_rate_ad_packet = {
     name: 'Heart Rate',
     uuids: [heart_rate.uuid],
   },
+};
+
+const uuid1234 = BluetoothUUID.getService(0x1234);
+const uuid5678 = BluetoothUUID.getService(0x5678);
+const uuidABCD = BluetoothUUID.getService(0xABCD);
+const manufacturer1Data = new Uint8Array([1, 2]);
+const manufacturer2Data = new Uint8Array([3, 4]);
+const uuid1234Data = new Uint8Array([5, 6]);
+const uuid5678Data = new Uint8Array([7, 8]);
+const uuidABCDData = new Uint8Array([9, 10]);
+/**
+ * An advertisement packet object that simulates a device that advertises
+ * service and manufacturer data.
+ * @type {ScanResult}
+ */
+const service_and_manufacturer_data_ad_packet = {
+  deviceAddress: '07:07:07:07:07:07',
+  rssi: -10,
+  scanRecord: {
+    name: 'LE Device',
+    uuids: [uuid1234],
+    manufacturerData: {0x0001: manufacturer1Data, 0x0002: manufacturer2Data},
+    serviceData:
+        {0x1234: uuid1234Data, 0x5678: uuid5678Data, 0xABCD: uuidABCDData}
+  }
 };
 
 /** Bluetooth Helpers */
